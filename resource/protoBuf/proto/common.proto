@@ -1,0 +1,410 @@
+package proto;
+option java_package = "com.huoji.h5.logic.proto";
+option java_outer_classname = "Common";
+
+// 测试端口
+message TestPackage_10091 {
+
+  required int32 packetId = 1;    // 接口Id
+
+  // 参数列表 只能请求Req***_packetId的接口
+  // 每一个接口最多允许5个参数，又多个string组成
+  // 接口只允许基本数据类型，列表类型的参数用分号(;)隔开
+  required string args = 2;
+
+}
+
+//
+message ReqlinkPort_10092 {
+
+  required int32 packetId = 1;    // 接口Id
+
+  // 参数列表 只能请求Req***_packetId的接口
+  // 每一个接口最多允许5个参数，又多个string组成
+  // 接口只允许基本数据类型，列表类型的参数用分号(;)隔开
+  required string args = 2;
+
+}
+
+
+message ResDto{
+  optional Resource res = 1;    //属性
+  optional int64 num = 2;      //属性数值
+  optional int32 resId = 3;    //对应的资源Id(排序用)
+}
+
+enum Resource{
+
+  Gold = 1;     // 元宝
+  Copper = 2;   // 铜钱
+  Energy = 3;   // 精力
+  Energy_Max = 4; // 精力上限
+  VipLevel = 5; // VIP等级
+
+  Gas = 26;    // 真气,(已废弃)
+  PlayerLevel = 7;    // 玩家等级
+  XiuWei = 8; // 修为
+  Prestige = 9; // 声望
+
+
+  // 经脉系统的资源值
+  Experience_XiuWei_Ratio = 10;   // 历练获得的修为百分比 增益
+  Destroy_Equip_Ratio = 11;       // 破坏他人装备概率百分比 增益
+  Protect_Equip_Ratio = 12;       // 保护我方装备概率百分比 增益
+
+  PetAdd_Ratio = 13;              // 宠物房子对宠物的属性加成
+  Player_Name = 14;  //玩家姓名
+  Donate = 15; //帮贡
+  Wuxun = 16; //武勋
+  SilverCoin = 17; //银币
+
+  //---------------------------------下面的为家将属性，上面的是玩家属性----------------------------
+
+  MaxHp = 100;  // 最大血量
+  Hp = 101;     // 当前血量
+
+  Wu = 102;     // 武力
+  Nei = 103;    // 内力
+  Ling = 104;   // 灵力
+
+  NoAtt = 105;  // 普通攻击
+  NoDef = 106;  // 普通防御
+  SkillAtt = 107;  // 技能攻击
+  SkillDef = 108;  // 技能防御
+  MagicAtt = 109;  // 法术攻击
+  MagicDef = 110;  // 法术防御
+
+  Aptitude = 111;  // 资质
+  Exp = 112;       // 经验
+  Level = 113;     // 等级
+
+  Xin_Fa = 114;    // 心法
+  Turn_Level = 115; // 转生等级
+
+  // 三攻三防加成比率
+  NoAtt_Ratio = 116;  // 普通攻击加成比率 单位(百分比)
+  NoDef_Ratio = 117;  // 普通防御加成比率 单位(百分比)
+  SkillAtt_Ratio = 118;  // 技能攻击加成比率 单位(百分比)
+  SkillDef_Ratio = 119;  // 技能防御加成比率 单位(百分比)
+  MagicAtt_Ratio = 120;  // 法术攻击加成比率 单位(百分比)
+  MagicDef_Ratio = 121;  // 法术防御加成比率 单位(百分比)
+
+  No_Hurt_Deduct_Rate = 122; // 普通伤害减免比率 单位(万分比)
+  Skill_Hurt_Deduct_Rate = 123; // 技能伤害减免比率 单位(万分比)
+  Magic_Hurt_Deduct_Rate = 124; // 法术伤害减免比率 单位(万分比)
+  Hurt_Deduct_Ratio = 125;    // 伤害减免 单位(万分比)
+
+  MaxHp_Ratio = 126; // 血量加成比率 单位(百分比)
+  Add_Aptitude = 127; // 额外资质
+
+  Prestige_Agg_Ratio = 128; // 声望系统攻击加成百分比
+  Prestige_Def_Ratio = 129; // 声望系统防御加成百分比
+
+  // 特殊属性
+  BeatBack = 130; // 反击
+  Resist = 131;   // 格挡
+  Berserk = 132;  // 暴击
+  Avoid = 133;    // 闪避
+
+  UnBerserk = 134; // 韧性，反暴击
+  UnResist = 135;  // 破格，反格挡
+  UnAvoid = 136;   // 命中，反闪避
+  UnBeatBack = 137; // 侵略, 反反击
+
+  Hurt_ADD_Ratio = 138;   // 造成伤害增加 单位(万分比)
+  Maic_SUCC_Ratio = 139;  // 法术成功率 单位(万分比)
+
+  Goods_Add_Aptitude = 140; //道具增加的额外资质
+  General_Total_Aptitude = 141;   //玩家总资质
+  Merits = 142;   //功绩
+
+  // 特殊属性放大（跟原来不同，在使用时会缩小1w）
+  BeatBackAmplify = 143; // 反击
+  ResistAmplify = 144;   // 格挡
+  BerserkAmplify = 145;  // 暴击
+  AvoidAmplify = 146;    // 闪避
+
+  UnBerserkAmplify = 147; // 韧性，反暴击
+  UnResistAmplify = 148;  // 破格，反格挡
+  UnAvoidAmplify = 149;   // 命中，反闪避
+  UnBeatBackAmplify = 150; // 侵略, 反反击
+
+  No_Agg_Thousand_Ratio = 151;    // 普通攻击加成比率 单位(万分比)
+  No_Def_Thousand_Ratio = 152;    // 普通防御加成比率 单位(万分比)
+  Skill_Agg_Thousand_Ratio = 153; // 技能攻击加成比率 单位(万分比)
+  Skill_Def_Thousand_Ratio = 154;  // 技能防御加成比率 单位(万分比)
+  Magic_Agg_Thousand_Ratio = 155;// 法术攻击加成比率 单位(万分比)
+  Magic_Def_Thousand_Ratio = 156;// 法术防御加成比率 单位(万分比)
+
+  Def_Thousand_Ratio = 205; // 防御加成比率 单位(万分比)    PS：这里防御是指三防
+  Agg_Thousand_Ratio = 206; // 攻击加成比率 单位(万分比)    PS：这里攻击是指三攻
+
+  BerserkBuf_Radio = 157; // 暴击伤害
+
+  MaxHp_TenThousand_Ratio = 158;  // 血量比率万分比
+
+  Aptitude_Add_HP = 159;    // 资质获得的血量加成值
+  Aptitude_Add_Agg = 160;    // 资质获得的攻击加成百分比
+  Aptitude_Add_Def = 161;    // 资质获得的防御加成百分比
+
+  Turn_Level_Add_HP = 162;    // 转生等级获得的血量加成值
+  Turn_Level_Add_Agg = 163;    // 转生等级获得的攻击加成百分比
+  Turn_Level_Add_Def = 164;    // 转生等级获得的防御加成百分比
+
+  Hp_Aff_Attack_Radio = 165;    // 神庭降低的属性影响比例
+  Acu_Attr_Radio = 166;    // 百会增加的属性比例
+  ShenTing = 167;    // 这个没用了。废了
+
+  NoHurt = 170;    // 物理伤害
+  JcHurt = 171;    // 法术伤害
+  ZfHurt = 172;    // 技能伤害
+  NoHurtRatio = 173;    // 物理伤害万分比
+  JcHurtRatio = 174;    // 法术伤害万分比
+  ZfHurtRatio = 175;    // 技能伤害万分比
+
+  OriginBaseRatio = 176; // 本源印记基础属性万分比
+  OriginSelfRatio = 177; // 本源印记本源属性万分比
+
+  PetAnger = 178;//宠物怒气值
+  UnAbnormalState = 179; //抵抗异常状态万分比
+
+  Three_Kinds_Att = 180; // 普通攻击、技能攻击、法术攻击 三种的值  注：此时表示三种值都是相同的
+  Three_Kinds_Def = 181; // 普通防御、技能防御、法术防御 三种的值  注：此时表示三种值都是相同的
+  Three_Kinds_Att_Thousand_Ratio = 182; // 普通攻击、技能攻击、法术攻击 三种加成比率 单位(万分比)  注：此时表示三种加成都是相同的
+  Three_Kinds_Def_Thousand_Ratio = 183; // 普通防御、技能防御、法术防御 三种加成比率 单位(万分比)  注：此时表示三种加成都是相同的
+  Three_Kinds_Power = 184; // 三种力量值（内力、灵力、武力  注：三种值相同）
+
+  No_Hurt_Add_Rate = 185; //物理伤害加成比率 (万分比)
+  Zf_Hurt_Add_Rate = 186; //技能伤害加成比率 (万分比)
+  Jc_Hurt_Add_Rate = 187; //法术伤害加成比率 (万分比)
+  Cure_Add_Rate = 188; //治疗效果加成比率 (万分比)
+  Cure_Deduct_Rate = 189; //治疗效果减少比率 (万分比)
+
+  Fixed_Hurt = 190; //额外伤害（固定伤害）
+  Fixed_Cure = 191; //额外治疗（固定治疗）
+
+  Infiltrate = 192; // 攻击穿透
+  No_Def_Infiltrate = 193; // 普通攻击穿透
+  Jc_Def_Infiltrate = 194; // 法术攻击穿透
+  Zf_Def_Infiltrate = 195; // 技能攻击穿透
+
+  A_Fixed_No_Hurt = 196; // 增加固定物理伤害
+  A_Fixed_Jc_Hurt = 197; // 增加固定法术伤害
+  A_Fixed_Zf_Hurt = 198; // 增加固定技能伤害
+  A_Fixed_Hurt = 203; // 增加固定伤害
+
+  R_Fixed_No_Hurt = 199; // 固定减少物理伤害
+  R_Fixed_Jc_Hurt = 200; // 固定减少法术伤害
+  R_Fixed_Zf_Hurt = 201; // 固定减少技能伤害
+  R_Fixed_Hurt = 204; // 固定减少伤害
+
+  Fixed_Heal = 202; // 固定治疗效果
+
+  A_Awaken_Attr = 207; // 增加觉醒全属性加成（万分比）
+
+  Mr_Agg = 208; //主角攻击力
+  Mr_Def = 209; //主角防御力
+  Combo = 210; //连击
+  Un_Combo = 211; //连击
+  Un_BerserkBuf_Radio = 212; //抗暴击伤害
+  Mr_Morale = 213; //主角精气
+}
+
+message GoodsReward{
+  optional int32 configId = 1;  // 物品配置Id
+  optional int32 num = 2;       // 物品数量
+  optional bool isRandom = 3 [default = false];   // 是否随机奖励（true-此物品是随机奖励，false-此物品不是随机奖励）
+}
+
+// 商品概率
+message GoodsOdds {
+  optional int32 goodsId = 1; // 商品id
+  optional int32 odds = 2;    // 概率
+  optional int32 num = 3;     // 商品数量
+}
+
+// 向前端刷新玩家资源
+message RespResource_10007 {
+  repeated ResDto list = 1;       // 这里暂时会更新元宝、铜钱，后面会补充
+}
+
+// 开启一个队列
+message ReqOpenAQueue_16022 {
+  required int32 queueTypeId = 1; // 队列类型Id 参考表ConfigOpQueue
+  required bool isComfirm = 2 ;    // 二次确认标志
+}
+
+// 推送队列信息
+message RespQueue_16023 {
+  repeated QueueDto dtos = 1;     // 登陆推送 刷新队列信息
+}
+
+
+// 用元宝消耗cd
+message ReqCostForQueue_16024 {
+  required int32 queueTypeId = 1; // 队列类型Id 参考表ConfigOpQueue
+  required int32 index = 2;       // 队列的索引
+  required bool isComfirm = 3;    // 二次确认标志
+}
+
+// 一键用元宝消耗cd
+message ReqAllCostForQueue_16026 {
+  repeated int32 queueTypeId = 1; // 队列类型Id 参考表ConfigOpQueue
+  required bool isComfirm = 2;    // 二次确认标志
+}
+
+// 用元宝购买队列
+message ReqBuyQueue_16025 {
+  required int32 queueTypeId = 1; // 队列类型Id 参考表ConfigOpQueue
+  required int32 index = 2;       // 队列的索引
+  required bool isComfirm = 3;    // 二次确认标志
+}
+
+// 队列
+message QueueDto {
+  required int32 queueTypeId = 1; // 队列类型Id 参考表ConfigOpQueue
+  required int32 index = 2;       // 队列的索引
+  required int64 cdTime = 3;      // 当前队列时长   （单位 ms毫秒）
+  required int64 limitTime = 4;   // 当前队列能够允许积累的时长 (单位 s秒)
+  required bool isFreezed = 5;    // 是否开始冻结，开始冻结该队列就不能累加cd。时间要显示红色
+  required int64 unFreezeTime = 6;// 解冻时间长（单位 s秒，譬如说60s，在冻结状态下的队列，只要倒计时进入60s，就可以继续使用）
+  required string customTitle = 7;       // 自定义标题
+  required int32 buy = 8;       // 是否已购买
+}
+
+// 应答包协议
+message RespCommonResponse_10009 {
+  required int32 packetId = 1; // 请求包ID
+  required string values = 2;
+}
+// 奖励 包含重复的道具奖励和资源奖励
+message Rewards {
+  repeated GoodsReward rewards = 1;
+  repeated ResDto res = 2;    // 逐步弃用，资源类奖励尽量通过Goods进行配置
+}
+//ConfigAwards转化的协议
+message AwardConfig {
+  required int32 id = 1;          // 奖励id
+  optional string title = 2;      // 奖励描述
+  optional string awards = 3;     // 奖励信息
+  optional int32 showEffect = 4 ; // 显示效果
+  optional string param1 = 5;     // 拓展参数1
+}
+
+
+// 防沉迷信息
+message RespAvoidAddiction_10014 {
+  required int32 onlineTime = 1; //
+}
+
+message RespOpenActivity_20320{
+  required int32 openId = 1 ; //打开界面
+}
+
+//剪刀石头布统一接口
+message ReqRandomGameNum_20322{
+  optional int32 type = 1;    //0：驯鹿任务 1：悬赏任务 2:捉迷藏
+  optional int32 value = 2;  //0：布  1：剪刀   2：石头
+}
+
+message RespRandomGameNum_20323{
+  optional int32 type = 1;
+  optional int32 value = 2;   //0：布  1：剪刀   2：石头
+  optional int32 success = 3;   //0:平 1：赢   2:输
+}
+
+message RespPlayerPhotoMain_12212{
+  optional string gmIds = 1; // GMID 格式 : 0|1001|1002|
+}
+
+message ReqPlayerPhotoUse_12213{
+  optional int32 gmId = 1; // 家将原型ID
+}
+
+message ActivityInfo{
+  optional bool enable = 1;   //活动是否开启
+  optional int32 num1 = 2;    //活动参数1
+  optional int32 num2 = 3;    //活动相关参数2
+  optional string params = 4;
+}
+
+message RespBatchBuyInfo_13202 {
+  optional int32 type = 1; // 购买的类型 1竞技场，2写书，3运镖，4接镖，5劫镖，6爬塔
+  repeated int32 price = 2; // 剩余的购买价钱
+}
+
+message ReqCommonOtherFreeSet_13209 {
+  optional int32 key = 1;    // 1: 天赋空闲提示
+  optional int32 set = 2;
+}
+
+message RespAppearanceMain_13230{
+  optional AppearanceInfo appInfo = 1;
+}
+
+message ReqAppearanceMain_13231{
+  optional int32 type = 1;    // 1头像 2头像框 3聊天气泡 4模型 5称号
+}
+
+message ReqAppearanceSelect_13232{
+  optional int32 type = 1;    // 1头像 2头像框 3聊天气泡 4模型 5称号
+  optional int32 id = 2;    //
+
+}
+//刷新外观红点
+message ReqAppearanceFlush_13233{
+  optional int32 type = 1; // 1头像 2头像框 3聊天气泡 4模型 5称号
+  optional int32 id = 2; // 配置id
+}
+
+message AppearanceInfo{
+  optional int32 type = 1;    // 1头像 2头像框 3聊天气泡 4模型 5称号
+  repeated AppearanceItem item = 2;
+  optional int32 selectId = 3;    // 选中的id
+}
+
+message AppearanceItem{
+  optional int32 id = 1;    // 1:
+  optional int32 expiredTime = 2; //过期时间戳 0表示不会过期
+  optional int32 redPoint = 3; //是否显示红点 0:不显示红点 1：显示红点
+  optional bool isCanWear = 4 [default = true]; // 是否可以佩戴 true:可以 false：不可以
+}
+
+//系统升级提示
+message RespAllUpgradeGuide_14596 {
+  repeated UpgradeGuide infos = 1; //
+  optional int32 isTip = 2; //是否提醒 0 关闭， 1 开启
+  //    optional int32 operateType = 3 ; //信息类型 更新一条或多条 1;增加一条或多条2;删除一条或多条 3;清空后刷新全部
+}
+
+//改变系统升级提示 返回1009 里面是isTip
+message ReqChangeUpgradeGuide_14595 {
+  optional int32 isTip = 1; //0 关闭， 1 开启
+}
+
+message UpgradeGuide{
+  optional int32 id = 1;    // 系统id:
+  optional int32 status = 2; //状态 0 可升级， 1升级中，2已升满
+}
+
+// 物品 [物品ID|物品数量]
+message GoodsNum {
+  optional int32 goodsId = 1;   // 物品Id
+  optional int32 num = 2;       // 物品数量
+  optional int32 haveNum = 3 [default = -1];  // 拥有数量
+  optional int32 configGeneralId = 4;         // 魂源id  注：传此值时要将goodsId赋值为0
+}
+
+// 家将奖励信息
+message GeneralReward {
+  optional bool isChip = 1; // 是否家将碎片  true-是  false-否
+  optional int32 generalId = 2; // ConfigGeneral表id
+  optional int32 num = 3; // 数量
+}
+
+// 排行榜（小游戏活动通用）
+message MiniGameRank {
+  optional int32 rank = 1; // 排名
+  optional string name = 2; // 名字
+  optional int32 grade = 3; // 积分
+}

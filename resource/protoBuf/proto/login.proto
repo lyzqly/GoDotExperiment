@@ -1,0 +1,276 @@
+package proto;
+option java_package = "com.huoji.h5.logic.proto";
+option java_outer_classname = "Login";
+
+
+
+message ReqLoginAuth_10000{
+  required string account = 1;    //用户账号
+  optional string pf = 2;        //登陆的平台(egret_src)
+  optional string params = 3;      //这里放前端传入的参数，用逗号隔开
+  optional int32 serverId = 4;        //服务器id
+
+  optional ClientType type = 5 [default = Web];       // 客户端工具
+
+  enum ClientType {
+    Web = 0;        // 普通的web客户端
+    Test_Client = 1;    // 测试客户端，这类型的客户端每次请求处理完毕都会有一个返回值
+  }
+}
+
+
+
+message RespLogin_10001 {
+	required AuthResult status = 1  [default = STATUS_SUCCEED];
+    optional string sessionKey = 2;	//登陆时的随机key
+
+    enum AuthResult {
+        STATUS_SUCCEED = 0; //正常
+        STATUS_FAILURE = 1;//认证失败
+        STATUS_INVALID = 2;//认证信息无效
+        STATUS_FORBID = 3;//账号被封
+        STATUS_MAINTAIN = 4; // 服务器维护
+        FORCE_IDCARD = 5; // 需要选择实名认证
+        FORCE_INDULGE_MAXTIME = 6; // 防沉迷在线时间过长限制登录
+        FORCE_INDULGE_NIGHT = 7; // 防沉迷夜间登录限制
+        FORCE_NEW_SERVER_CREATE = 8; //请前往新服创建角色
+    }
+    optional RoleInfo role = 3;
+    optional int32 guide = 4; // 1：不能跳，2：能跳，3：选择跳，4：选择不跳
+    optional string configVersion = 6; // 配置里前端使用的版本号
+}
+
+message RoleInfo{
+  optional int64 playerId = 1;
+  optional string name = 2;
+  optional int32 level = 3;
+  optional int32 roleType = 4;
+}
+
+message ReqLoginAsk_10002{
+  required int64 playerId = 1;    //玩家Id
+}
+
+message RespLoginAsk_10003{
+
+  required AuthResult status = 1  [default = SUCC];
+
+  optional int32 openDays = 2; //开服天数，开服当天是第0天
+  enum AuthResult {
+    FAILED = 0;     //失败
+    SUCC = 1;       //成功
+    UN_REGISTER = 2;//未注册
+    UN_CHOSE = 3;   // 未选择家将 20191023 新增
+    MAINTAIN = 4;   // 服务器维护中
+  }
+  optional MainRole mainRole = 3;     // 玩家的主要信息
+
+  optional int64 currentTime = 4;
+  optional bool todayFirst = 5; // 是否今天首次登录，true为是
+  optional bool isOfficialCheckIdCard = 6; // 是否官方验证身份证
+  optional string dubboName = 7; //跨服名字
+  optional string loginGift = 8; //首次登陆礼包, 已领取传空值，未领取传奖励列表
+  repeated string sameServerDubboNames = 9; //同服的服务器名
+  optional int32 isRegionOpen = 10; //标识是否同一个大区，使用zoneId即索引作为标识 ，从0开始，-1标识不在各个大区里
+  optional int64 createTime = 11; //角色创建毫秒时间戳
+}
+
+
+// 主城信息
+message MainRole{
+  required int64 id = 1;              // playerId
+  required string name = 2;           // 名称
+  required int32 level = 3;           // 等级
+  required int32 titleLevel = 4;      // 称号Id
+  required int64 gold = 5;            // 元宝
+  required int64 copper = 6;          // 铜钱
+  optional int64 xiuwei = 7;           // 修为
+  optional int64 gas = 8;             // 真气
+  optional int64 prestige = 9;         // 声望
+  optional int64 energy = 10;         //精力
+  optional int32 vipLevel = 11;         //VIP 等级
+  optional int32 embattleId = 12;         //布阵编号
+  optional int32 year = 13;
+  optional int32 season = 14;           // 1春、2夏、3秋、4冬
+  optional int32 energyMax = 15;      // 精力上限
+  optional int32 forcesId = 16;         // 势力ID
+  optional int32 legionId = 17;         // 帮派ID 有帮派帮派ID, 没帮派-1
+  optional int32 cityId = 18;         // 当前所在的城池ID
+  optional int32 bwTokenType = 19;         // 霸者令类型
+  required int32 sex = 20;             //性别：0男1女
+  optional string memo = 21;             //势力签名
+  optional int64 merits = 22;     //玩家功绩
+  optional int32 modelId = 23;    //玩家家将模型id
+  optional int32 worldBoom = 24; //城池繁荣度
+  optional int32 roldId = 25;     //头像 - 家将ID
+  optional int32 strongTeamMapId = 26;     //高手组地图ID
+  optional int64 donate = 27; //玩家帮贡
+  optional string freeSet = 28;             //设置
+  optional bool isCheckIdCard = 29;             //是否已验证身份证
+  optional int32 maxBeatPowerNpcId = 30;             //玩家历练地图已击败的最大npcId，不包括高手
+  optional int64 silverCoin = 31; //银币
+  optional string systemGrowthVipType = 32; // 系统成长特权
+  optional int32 xinFaLevel = 33; // 主角心法总等级
+}
+
+//message  ReqCreate_10004{
+//    required int32 roleType = 1;		//角色类型 有四种：剑手0、刺客1、鞭手2、刀手3
+//    required string nickName = 2;		//玩家名字
+//    required int32 sex = 3;             //性别：0男1女
+//}
+
+message ReqCreate_10004{
+  required string nickName = 1;    //玩家名字
+  required int32 sex = 2;             //性别：0男1女
+}
+
+message RespCreate_10005{
+
+  required CreateResult result = 1;
+  optional int64 playerId = 2;    //玩家id
+  optional string name = 3; //玩家名字
+  optional int64 serverTime = 4; //服务器时间
+}
+
+enum CreateResult {
+  FAILED = 0;
+  SUCC = 1;//成功
+  FAILD_EXIST_NAME = 2;//存在这个用户名
+  FAILD_UNVALID_NAME_FORMAT = 3;//非法的名字格式
+  INVALID_ROLETYPE = 4;// 无效职业
+  INVALID_OVERFLOW = 5;// 玩家ID溢出 超过上限
+  INVALID_SERVER_NOT_HOLDED = 6;// 服务器不存在
+}
+
+// 选择玩家的职业 已弃用
+message ReqChoseRole_10020 {
+  required int32 roleType = 1;    // 选择的角色类型 有四种：剑手0、刺客1、鞭手2、刀手3
+}
+
+// 选择职业返回
+message RespChoseRole_10021 {
+  required CreateResult result = 1;
+}
+
+
+//心跳响应
+message RespHeartBeat_10051{
+  required int64 timeInSec = 1;  //当前时间戳(秒为单位)
+}
+
+//账号被顶或者踢人
+message RespKickAccount_10052{
+  optional int32 type = 1; //0账号被顶，1踢人
+}
+
+// 在线季节变动推送 tt
+message RespChangeSeason_10008 {
+  optional int32 year = 1;
+  optional int32 season = 2;           // 1春、2夏、3秋、4冬
+}
+
+
+// 新手引导-记录最大步数
+message ReqGuideRecordStep_10011 {
+  required int32 step = 1;
+}
+
+// 新手引导-响应当前步数和当前任务信息
+message RespGuideRecordStep_10012 {
+  required int32 step = 1; // 当前步数
+  optional GuideTask curTask = 2; // 当前任务
+  required bool isSkip = 3 [default = false]; //是否跳过
+  required bool dismissTip = 4 [default = false]; // 本次登录是否需要出现解雇Tips true需要，false不需要
+  required int32 autoRoleMark = 5 ;//自动创角标识。0，非自动创角，1：自动创角，未改名，2：自动创角，已改名
+  required string softGuide = 6 ; //弱引导记录， 没有表示没记录过，[key,key1,key2]
+  optional bool isTalentGuide = 7 [default = false]; // false-不需要天赋引导，true-需要天赋引导
+  optional string trgDiaRecord = 8; // 触发过对话的id  id1,id2,id3,id4
+}
+
+// 新手引导-前端存值
+message ReqGuideFrontSaveData_10038 {
+  optional bool isTalentGuide = 1; // 引导前端记录用（false-不需要天赋引导，true-需要天赋引导）
+}
+
+// 请求记录对话
+message ReqRecordDialogue_10039 {
+    required int32 id = 1; // 对话id
+}
+
+// 引导任务
+message GuideTask {
+  optional int32 taskId = 1; // 任务ID
+  optional int32 status = 2; // 任务状态, 0未完成 1已完成 2已领取
+}
+
+//// 领取引导任务奖励
+//message ReqGainGuideTaskReward_10013 {
+//  optional int32 taskId = 1; // 任务ID
+//}
+
+// 跳过新手引导
+message ReqSkipGuide_10015 {
+  optional bool skip = 1; // true 跳过
+}
+
+// 请求完成某个新手任务
+message ReqFinishGuideTask_10017 {
+  required int32 taskId = 1; // 任务id
+}
+//自动创角后 改名该性别
+message  ReqUpdateNameSexAfterAutoRole_10023{
+  required string nickName = 1;    //玩家名字
+  required int32 sex = 2;             //性别：0男1女
+  optional bool isConfirm = 3 [default = false]; // 改名确认
+}
+
+// 内部玩家登录
+message ReqInnerLogin_10025 {
+  required int64 uid = 1;             // uid
+  required int64 timestamp = 2;       // 时间戳  毫秒，一分钟后登录接口失效
+  required string sign = 3;           // 签名
+  required string pf = 4;        // 登陆的平台(egret_src)
+  required int32 serverId = 5;        // 服务器id
+}
+
+// 请求身份证验证
+message ReqCkeckIdentity_10018 {
+  optional string idcard = 1; // 身份证号
+  optional string name = 2; // 姓名
+  optional int32 from = 3; // 0游戏内/ 1大厅
+}
+// 返回身份证验证
+message RespReqCkeckIdentity_10019 {
+  optional bool result = 1; // true 验证成功
+  optional string message = 2; // 提示
+}
+
+//请求领取首次登陆礼包
+message ReqRewardLoginFeedBack_10024 {
+  optional string message = 1; // 验证码
+}
+
+// 记录软指导
+message ReqRecordSoftGuide_10026 {
+  required int32 key = 1;
+}
+
+
+// 记录指导
+message ReqFinishGuide_10027 {
+  required int32 id = 1;
+}
+
+// 领取指导奖励
+message ReqGainGuideReward_10028 {
+  required int32 id = 1;
+}
+// 返回引导信息
+message RespGuideInfo_10029 {
+  repeated  GuideTask guideInfo = 1; // 任务状态
+}
+
+// 请求引导战斗
+message ReqGuideFight_10037 {
+  required int32 key = 1; // 1表示与【神龙教信徒甲】战斗，2表示与【神龙教信徒已】战斗
+}

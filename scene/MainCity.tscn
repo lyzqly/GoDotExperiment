@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhd65uepf51cu"]
+
+[ext_resource type="Texture2D" uid="uid://ciatro0m4sbwf" path="res://resource/module/mainCity/1.jpg" id="1_3txim"]
+[ext_resource type="Script" uid="uid://bauu5y7eph3kl" path="res://script/module/mainCity/main_city.gd" id="1_5trvv"]
+
+[node name="MainCity" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1387.0
+script = ExtResource("1_5trvv")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1387.0
+offset_bottom = 640.0
+texture = ExtResource("1_3txim")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 149.0
+offset_top = 467.0
+offset_right = 285.0
+offset_bottom = 513.0
+text = "登陆"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

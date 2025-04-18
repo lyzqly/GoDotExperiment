@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://bckhrwydhm64v"]
+
+[ext_resource type="Script" uid="uid://u1aq4lney0jp" path="res://script/Main.gd" id="1_nbc6x"]
+
+[sub_resource type="GDScript" id="GDScript_nbc6x"]
+script/source = "extends Node2D
+
+"
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_nbc6x")
+
+[node name="sceneLayer" type="Node2D" parent="."]
+script = SubResource("GDScript_nbc6x")
+
+[node name="uiLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD_Layer" type="Control" parent="uiLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="windows_Layer" type="Control" parent="uiLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="alert_Layer" type="Control" parent="uiLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="top_Layer" type="Control" parent="uiLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="tips_Layer" type="Control" parent="uiLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
