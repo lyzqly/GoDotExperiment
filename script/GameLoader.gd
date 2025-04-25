@@ -23,11 +23,6 @@ func load_game():
 	# 3、加载主场景并进入
 	# 加载配置文件
 	load_config();
-	update_progress(30);
-	connect_network()
-	update_progress(50);
-	preload_assets();
-	update_progress(100);
 	# 加载完成后切换场景
 	#get_tree().change_scene_to_file("res://scene/Main.tscn")
 
@@ -49,17 +44,18 @@ func load_config():
 		#print(str_data); 打印太多会输出内在溢出
 
 	update_status("配置加载完成")
+	update_progress(30);
+	connect_network()
 
 # 连接WebSocket服务器
 func connect_network():
 	update_status("连接服务器中...")
 	var connected = await NetworkManager.connect_to_server()
-	if connected != OK:
-		update_status("服务器连接成功")
-	else:
-		push_error("服务器连接失败")
-		# 这里可以添加重试逻辑
+	NetworkManager.socket_successfully.connect(_on_socket_successfully)
 
+func _on_socket_successfully():
+	update_progress(50);
+	preload_assets();
 
 func _on_progress(ratio: float):
 	print(ratio)
@@ -68,6 +64,7 @@ func _on_progress(ratio: float):
 func preload_assets():
 	#var result = await AsyncLoader.load_async(PRELOAD_PATHS,_on_progress)
 	var result = await AsyncLoader.load_async(PRELOAD_PATHS)
+	update_progress(100);
 	if result.success:
 		var main_scene:PackedScene = result.resources[0];
 		get_tree().change_scene_to_packed(main_scene)
@@ -78,7 +75,6 @@ func preload_assets():
 
 # 更新UI
 func update_progress(value: float):
-	#print(value)
 	var calcW = (value/100)*1440;
 	progress_bar.size.x = calcW;
 	progress_but.position.x = calcW-20

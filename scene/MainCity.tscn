@@ -14,13 +14,3 @@ layout_mode = 0
 offset_right = 1387.0
 offset_bottom = 640.0
 texture = ExtResource("1_3txim")
-
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 149.0
-offset_top = 467.0
-offset_right = 285.0
-offset_bottom = 513.0
-text = "登陆"
-
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -21,6 +21,18 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="playerUI" type="Control" parent="uiLayer/HUD_Layer"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="playerName" type="Label" parent="uiLayer/HUD_Layer/playerUI"]
+layout_mode = 0
+offset_left = 449.0
+offset_top = 242.0
+offset_right = 489.0
+offset_bottom = 265.0
+
 [node name="windows_Layer" type="Control" parent="uiLayer"]
 layout_mode = 3
 anchors_preset = 0

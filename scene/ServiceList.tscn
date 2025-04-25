@@ -1,0 +1,1182 @@
+[gd_scene load_steps=13 format=3 uid="uid://cqy6yqf8aqwjp"]
+
+[ext_resource type="Script" uid="uid://bsap55qdqulgi" path="res://script/module/service_list.gd" id="1_tbsjo"]
+[ext_resource type="Texture2D" uid="uid://cn4rat4rartbo" path="res://resource/module/serviceList/loading_bg.jpg" id="1_wvtol"]
+[ext_resource type="Texture2D" uid="uid://d2lpnyb8nt5qk" path="res://resource/module/serviceList/login_startbtn.png" id="2_jtg7w"]
+[ext_resource type="Texture2D" uid="uid://croepjy4ys256" path="res://resource/module/serviceList/login_selected.png" id="2_w4fun"]
+[ext_resource type="Texture2D" uid="uid://dxw2uu3u6tyfl" path="res://resource/module/serviceList/login_status2.png" id="4_v3m6d"]
+[ext_resource type="Texture2D" uid="uid://qe1pqatsqsaw" path="res://resource/module/serviceList/serverlist_bg3.jpg" id="5_pkpvx"]
+[ext_resource type="Script" uid="uid://b3mvc4yhvnmp1" path="res://script/module/servicelist/serviceList_Panel.gd" id="6_4f4ok"]
+[ext_resource type="Texture2D" uid="uid://b7jlkginus574" path="res://resource/module/serviceList/common_close5.png" id="6_swawg"]
+[ext_resource type="Texture2D" uid="uid://cxxlinpc8dpyg" path="res://resource/module/serviceList/login_itemdaqu0.png" id="7_6mgid"]
+[ext_resource type="Script" uid="uid://b628oo86kcvq4" path="res://scene/servicelist_item.gd" id="8_6dkkd"]
+[ext_resource type="Texture2D" uid="uid://sxqyqc2usnte" path="res://resource/module/serviceList/login_newstatus4.png" id="9_7xd2a"]
+[ext_resource type="Texture2D" uid="uid://btbsdk662efcx" path="res://resource/module/serviceList/login_new.png" id="10_jiwax"]
+
+[node name="ServiceList" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tbsjo")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1440.0
+offset_bottom = 640.0
+texture = ExtResource("1_wvtol")
+
+[node name="LoginStartbtn" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 104.0
+offset_right = 150.0
+offset_bottom = 232.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("2_jtg7w")
+
+[node name="CenterContainer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -327.0
+offset_top = -63.5
+offset_right = 327.0
+offset_bottom = 63.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LoginSelected" type="TextureRect" parent="CenterContainer"]
+layout_mode = 2
+offset_right = 654.0
+offset_bottom = 127.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_w4fun")
+
+[node name="Label" type="Label" parent="CenterContainer"]
+layout_mode = 2
+offset_left = 186.0
+offset_top = 54.5
+offset_right = 276.0
+offset_bottom = 80.5
+theme_override_font_sizes/font_size = 18
+text = "内网服务器"
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 48.5
+offset_right = 184.0
+offset_bottom = 88.5
+texture = ExtResource("4_v3m6d")
+
+[node name="TapRect" type="TextureRect" parent="CenterContainer"]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 18.5
+offset_right = 589.0
+offset_bottom = 112.5
+mouse_default_cursor_shape = 2
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_4f4ok")
+
+[node name="ColorRect" type="ColorRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.3)
+
+[node name="Panel" type="Panel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -425.0
+offset_top = -240.0
+offset_right = 425.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel"]
+layout_mode = 0
+offset_right = 850.0
+offset_bottom = 480.0
+texture = ExtResource("5_pkpvx")
+
+[node name="closeBtn" type="TextureButton" parent="Panel/Panel"]
+layout_mode = 0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 39.0
+offset_bottom = 45.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("6_swawg")
+
+[node name="list_left" type="ScrollContainer" parent="Panel/Panel"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 86.0
+offset_right = 188.0
+offset_bottom = 406.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="VScrollBar" type="VBoxContainer" parent="Panel/Panel/list_left"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="item0" type="AspectRatioContainer" parent="Panel/Panel/list_left/VScrollBar"]
+layout_mode = 2
+script = ExtResource("8_6dkkd")
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_left/VScrollBar/item0"]
+layout_mode = 2
+texture = ExtResource("7_6mgid")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_left/VScrollBar/item0"]
+layout_mode = 2
+text = "一大区"
+
+[node name="item1" type="AspectRatioContainer" parent="Panel/Panel/list_left/VScrollBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_left/VScrollBar/item1"]
+layout_mode = 2
+texture = ExtResource("7_6mgid")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_left/VScrollBar/item1"]
+layout_mode = 2
+text = "一大区"
+
+[node name="item2" type="AspectRatioContainer" parent="Panel/Panel/list_left/VScrollBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_left/VScrollBar/item2"]
+layout_mode = 2
+texture = ExtResource("7_6mgid")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_left/VScrollBar/item2"]
+layout_mode = 2
+text = "一大区"
+
+[node name="list_last" type="ScrollContainer" parent="Panel/Panel"]
+layout_mode = 0
+offset_left = 218.0
+offset_top = 115.0
+offset_right = 808.0
+offset_bottom = 215.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="gridCon" type="GridContainer" parent="Panel/Panel/list_last"]
+layout_mode = 2
+theme_override_constants/h_separation = 205
+theme_override_constants/v_separation = 30
+columns = 3
+
+[node name="item1" type="Control" parent="Panel/Panel/list_last/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_last/gridCon/item1"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_last/gridCon/item1"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_last/gridCon/item1"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item2" type="Control" parent="Panel/Panel/list_last/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_last/gridCon/item2"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_last/gridCon/item2"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_last/gridCon/item2"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item3" type="Control" parent="Panel/Panel/list_last/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_last/gridCon/item3"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_last/gridCon/item3"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_last/gridCon/item3"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item4" type="Control" parent="Panel/Panel/list_last/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_last/gridCon/item4"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_last/gridCon/item4"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_last/gridCon/item4"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item5" type="Control" parent="Panel/Panel/list_last/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_last/gridCon/item5"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_last/gridCon/item5"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_last/gridCon/item5"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item6" type="Control" parent="Panel/Panel/list_last/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_last/gridCon/item6"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_last/gridCon/item6"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_last/gridCon/item6"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item7" type="Control" parent="Panel/Panel/list_last/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_last/gridCon/item7"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_last/gridCon/item7"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_last/gridCon/item7"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item8" type="Control" parent="Panel/Panel/list_last/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_last/gridCon/item8"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_last/gridCon/item8"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_last/gridCon/item8"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item9" type="Control" parent="Panel/Panel/list_last/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_last/gridCon/item9"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_last/gridCon/item9"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_last/gridCon/item9"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item10" type="Control" parent="Panel/Panel/list_last/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_last/gridCon/item10"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_last/gridCon/item10"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_last/gridCon/item10"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item11" type="Control" parent="Panel/Panel/list_last/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_last/gridCon/item11"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_last/gridCon/item11"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_last/gridCon/item11"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item12" type="Control" parent="Panel/Panel/list_last/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_last/gridCon/item12"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_last/gridCon/item12"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_last/gridCon/item12"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item13" type="Control" parent="Panel/Panel/list_last/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_last/gridCon/item13"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_last/gridCon/item13"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_last/gridCon/item13"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item14" type="Control" parent="Panel/Panel/list_last/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_last/gridCon/item14"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_last/gridCon/item14"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_last/gridCon/item14"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item15" type="Control" parent="Panel/Panel/list_last/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_last/gridCon/item15"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_last/gridCon/item15"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_last/gridCon/item15"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="list_service" type="ScrollContainer" parent="Panel/Panel"]
+layout_mode = 0
+offset_left = 218.0
+offset_top = 245.0
+offset_right = 808.0
+offset_bottom = 405.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="gridCon" type="GridContainer" parent="Panel/Panel/list_service"]
+layout_mode = 2
+theme_override_constants/h_separation = 205
+theme_override_constants/v_separation = 30
+columns = 3
+
+[node name="item1" type="Control" parent="Panel/Panel/list_service/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item1"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_service/gridCon/item1"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item1"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item2" type="Control" parent="Panel/Panel/list_service/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item2"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_service/gridCon/item2"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item2"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item3" type="Control" parent="Panel/Panel/list_service/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item3"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_service/gridCon/item3"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item3"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item4" type="Control" parent="Panel/Panel/list_service/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item4"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_service/gridCon/item4"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item4"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item5" type="Control" parent="Panel/Panel/list_service/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item5"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_service/gridCon/item5"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item5"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item6" type="Control" parent="Panel/Panel/list_service/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item6"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_service/gridCon/item6"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item6"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item7" type="Control" parent="Panel/Panel/list_service/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item7"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_service/gridCon/item7"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item7"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item8" type="Control" parent="Panel/Panel/list_service/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item8"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_service/gridCon/item8"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item8"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item9" type="Control" parent="Panel/Panel/list_service/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item9"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_service/gridCon/item9"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item9"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item10" type="Control" parent="Panel/Panel/list_service/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item10"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_service/gridCon/item10"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item10"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item11" type="Control" parent="Panel/Panel/list_service/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item11"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_service/gridCon/item11"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item11"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item12" type="Control" parent="Panel/Panel/list_service/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item12"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_service/gridCon/item12"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item12"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item13" type="Control" parent="Panel/Panel/list_service/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item13"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_service/gridCon/item13"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item13"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item14" type="Control" parent="Panel/Panel/list_service/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item14"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_service/gridCon/item14"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item14"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item15" type="Control" parent="Panel/Panel/list_service/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item15"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_service/gridCon/item15"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item15"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item16" type="Control" parent="Panel/Panel/list_service/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item16"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_service/gridCon/item16"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item16"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item17" type="Control" parent="Panel/Panel/list_service/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item17"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_service/gridCon/item17"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item17"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item18" type="Control" parent="Panel/Panel/list_service/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item18"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_service/gridCon/item18"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item18"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item19" type="Control" parent="Panel/Panel/list_service/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item19"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_service/gridCon/item19"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item19"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item20" type="Control" parent="Panel/Panel/list_service/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item20"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_service/gridCon/item20"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item20"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item21" type="Control" parent="Panel/Panel/list_service/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item21"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_service/gridCon/item21"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item21"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[node name="item22" type="Control" parent="Panel/Panel/list_service/gridCon"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item22"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 15.0
+offset_bottom = 19.0
+texture = ExtResource("9_7xd2a")
+
+[node name="Label" type="Label" parent="Panel/Panel/list_service/gridCon/item22"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0.329158, 0.329158, 0.329158, 1)
+text = "内网服务器-1-s0"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Panel/list_service/gridCon/item22"]
+layout_mode = 0
+offset_left = 138.0
+offset_right = 179.0
+offset_bottom = 20.0
+texture = ExtResource("10_jiwax")
+
+[connection signal="gui_input" from="CenterContainer/TapRect" to="." method="_on_tap_rect_gui_input"]
+[connection signal="pressed" from="Panel/Panel/closeBtn" to="Panel" method="_on_close_btn_pressed"]
