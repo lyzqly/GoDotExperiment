@@ -1,9 +1,9 @@
-extends AspectRatioContainer
+class_name ServiceListDaQUItem extends ListItemBase
 
-func _ready():
-	connect("gui_input", _on_gui_input)
 
-func _on_gui_input(event: InputEvent):
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			print("左键点击生效")
+func changeSelected():
+	var resV:int = 1 if selected else  0
+	var resSource:String = "res://resource/module/serviceList/login_itemdaqu%d.png" % resV
+	$TextureRect.texture =load(resSource)
+	var colorStr:String = '#774237' if selected else '#eee0c7'
+	$Label.set("theme_override_colors/font_color", Color(colorStr))  # 十六进制颜色带透明度
